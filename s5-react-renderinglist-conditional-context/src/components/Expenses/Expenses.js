@@ -6,10 +6,10 @@ import "../css/Expenses.css";
 
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState(2019);
-  const [displayData, setDisplayData] = useState(props.items);
+  const [filteredExpenses, setFilteredExpenses] = useState(props.items);
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
-    setDisplayData(() => {
+    setFilteredExpenses(() => {
       return props.items.filter((expense) => {
         return expense.date.getFullYear().toString() === selectedYear;
       });
@@ -23,7 +23,7 @@ const Expenses = (props) => {
           selectedYear={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {displayData.map((expense) => (
+        {filteredExpenses.map((expense) => (
           <ExpenseItem
             key={expense.id}
             title={expense.title}
